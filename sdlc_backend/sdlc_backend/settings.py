@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'import_export',
+    'rnnprediction',
 ]
 
 # Add DRF authentication and permission classes
