@@ -93,7 +93,7 @@ def predictions(request):
     predictions = rnn_predict(input_array)
     
     # Translate predicted probabilities to class names
-    class_names = ['Class1', 'Class2', 'Class3', 'Class4', 'Class5', 'Class6', 'Class7', 'Class8', 'Class9', 'Class10', 'Class11', 'Class12', 'Class13', 'Class14', 'Class15',]  # Replace with actual class names
+    class_names = ['Waterfall', 'Spiral', 'V model', 'Prototype', 'Incremental', 'Iterative', 'RAD', 'Kanban', 'RUP', 'XP', 'Scrum', 'DSDM', 'Big Bang', 'Lean', 'DevOps',]  # Replace with actual class names
     readable_predictions = []
     for prediction_array in predictions:
         class_index = max(enumerate(prediction_array), key=lambda x: x[1])[0]
@@ -102,4 +102,3 @@ def predictions(request):
     
     return JsonResponse({'predictions': readable_predictions})
 
-    # class_names = ['Class1', 'Class2', 'Class3', 'Class4', 'Class5', 'Class6', 'Class7', 'Class8', 'Class9', 'Class10', 'Class11', 'Class12', 'Class13', 'Class14', 'Class15',]  # Replace with actual class names
