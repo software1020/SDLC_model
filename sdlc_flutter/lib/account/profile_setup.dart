@@ -27,7 +27,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         widget.authToken!.isNotEmpty &&
         bioController.text.isNotEmpty) {
       Profile profile = Profile(
-        avatar: avatarFileUrl ?? 'images/avatar.jpg', // Set the avatar URL or path here
+        avatar: avatarFileUrl ?? 'images/sdlc.png', // Set the avatar URL or path here
         bio: bioController.text,
       );
 

@@ -157,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 EdgeInsets.fromLTRB(21 * fem, 37 * fem, 21 * fem, 85 * fem),
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xffedf9f0),
+              color: Color.fromARGB(255, 237, 237, 249),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -177,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 75.67,
                         height: 56.11,
                         child: Image.asset(
-                          'images/greenpursevector-LXe.png',
+                          'images/sdlc.png',
                           width: 75.67,
                           height: 56.11,
                         ),
@@ -350,7 +350,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontSize: 16 * ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.3025 * ffem / fem,
-                                color: const Color(0xff017b4e),
+                                color: const Color.fromARGB(255, 1, 46, 123),
                               ),
                             ),
                           ),
@@ -364,7 +364,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.zero,
-                            backgroundColor: const Color(0xff23aa49),
+                            backgroundColor: const Color.fromARGB(255, 35, 73, 170),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10 * fem),
                             ),
@@ -432,7 +432,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 16 * ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.3025 * ffem / fem,
-                            color: const Color(0xff017b4e),
+                            color: const Color.fromARGB(255, 1, 21, 123),
                           ),
                         ),
                       ],

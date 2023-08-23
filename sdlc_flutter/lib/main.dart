@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdlc_flutter/account/profile_setup.dart';
+import 'package:sdlc_flutter/home-screen.dart';
 import 'package:sdlc_flutter/settings/change_country.dart';
 import 'package:sdlc_flutter/settings/change_language_page.dart';
 import 'package:sdlc_flutter/settings/change_password_page.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/onboardingscreen': (context) => const OnboardingScreen(),
         '/signup': (context) => const RegistrationScreen(),
+        '/home-screen': (context) => HomeScreen(),
         '/changecountry': (context) => const ChangeCountryPage(),
         '/changelanguage': (context) => const ChangeLanguagePage(),
         '/changepassword': (context) => const ChangePasswordPage(),

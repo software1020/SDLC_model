@@ -107,7 +107,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Color.fromARGB(255, 79, 76, 175),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -249,7 +249,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffedf9f0), // Set background color here
+      backgroundColor: const Color.fromARGB(255, 237, 240, 249), // Set background color here
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.fromLTRB(21, 37, 21, 35),
@@ -264,7 +264,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   // margin: const EdgeInsets.fromLTRB(119, 0, 119, 11),
                   padding: const EdgeInsets.fromLTRB(10, 20, 10.33, 19.89),
                   decoration: BoxDecoration(
-                    color: const Color(0xffffffff),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.circular(55),
                   ),
                   child: Center(
@@ -272,7 +272,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       width: 75.67,
                       height: 56.11,
                       child: Image.asset(
-                        'images/greenpursevector-LXe.png',
+                        'images/sdlc.png',
                         width: 75.67,
                         height: 56.11,
                       ),
@@ -403,30 +403,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           });
                         },
                       ),
-
-                      // IntlPhoneField(
-                      //   controller: phoneNumberController,
-                      //   decoration: const InputDecoration(
-                      //     labelText: 'Phone Number',
-                      //     border: OutlineInputBorder(),
-                      //   ),
-                      //   style: const TextStyle(
-                      //     fontFamily: 'DM Sans',
-                      //     fontWeight: FontWeight.w400,
-                      //     color: Color(0xff000000),
-                      //   ),
-                      //   validator: (value) {
-                      //     if (value == null) {
-                      //       return 'Enter valid phone number';
-                      //     }
-                      //     return null;
-                      //   },
-                      //   onChanged: (value) {
-                      //     setState(() {
-                      //       _fullNameError = null;
-                      //     });
-                      //   },
-                      // ),
                       if (_phoneNumberError != null)
                         Text(
                           _phoneNumberError!,
@@ -532,14 +508,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             register(context);
                           }
                         },
-                        // onPressed: () {
-                        //   Navigator.pushNamed(context, '/home');
-                        // },
 
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(
                               20.0), // Adjust the padding as needed
-                          backgroundColor: const Color(0xff23aa49),
+                          backgroundColor: const Color.fromARGB(255, 35, 58, 170),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -597,7 +570,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fontFamily: 'DM Sans',
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff017b4e),
+                          color: Color.fromARGB(255, 1, 27, 123),
                         ),
                       ),
                     ],

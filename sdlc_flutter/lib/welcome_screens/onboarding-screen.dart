@@ -23,7 +23,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         decoration: BoxDecoration(
           color: Colors.grey[100],
           image: const DecorationImage(
-            image: AssetImage('images/background.png'),
+            image: AssetImage('images/background-02.png'),
             fit: BoxFit.contain, // Change the image to green
           ),
         ),
@@ -43,7 +43,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: <Widget>[
                     Center(
                       child: Image.asset(
-                        'images/firstScreen.png',
+                        'images/sdlc.png',
                         height: 200,
                         width: 200,
                       ),
@@ -51,20 +51,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'Get Any Agric Product Online',
+                        'Find the Best Fit SDLC model',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromARGB(255, 251, 251, 251)),
                       ),
                     ),
                     const Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 32, vertical: 16.0),
                       child: Text(
-                        'You can buy any products ranging from groceries items to food and cash crops within few clicks.',
+                        'You can find a best fit model with just few parameters',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 251, 251, 251),
                             fontSize: 13.0),
                       ),
                     ),
@@ -76,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: <Widget>[
                     Center(
                       child: Image.asset(
-                        'images/secondScreen.png',
+                        'images/sdlc.png',
                         height: 200,
                         width: 200,
                       ),
@@ -84,20 +84,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'Shipping to anywhere ',
+                        'Available anytime ',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromARGB(255, 251, 251, 251)),
                       ),
                     ),
                     const Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 32, vertical: 16.0),
                       child: Text(
-                        'We will ship to anywhere in the world, With 30 day 100% money back policy.',
+                        'You can just in few clicks take the best decision',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 251, 251, 251),
                             fontSize: 13.0),
                       ),
                     ),
@@ -109,7 +109,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: <Widget>[
                     Center(
                       child: Image.asset(
-                        'images/thirdScreen.png',
+                        'images/sdlc.png',
                         height: 200,
                         width: 200,
                       ),
@@ -117,20 +117,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'On-time delivery',
+                        'Artificially Intelligent',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromARGB(255, 251, 251, 251)),
                       ),
                     ),
                     const Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 32, vertical: 16.0),
                       child: Text(
-                        'You can track your product with our powerful tracking service.',
+                        'An intelligent model to help you predict your model outcome',
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 251, 251, 251),
                             fontSize: 13.0),
                       ),
                     ),
