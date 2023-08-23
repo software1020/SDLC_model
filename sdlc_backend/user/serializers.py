@@ -4,8 +4,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import gettext as _
 from rest_framework.validators import UniqueValidator
-from phonenumber_field.serializerfields import PhoneNumberField
-from django_countries.serializers import CountryFieldMixin
 import random
 from datetime import datetime, timedelta
 from .exceptions import (
@@ -115,25 +113,3 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('avatar', 'bio',)
 
 
-class AddressReadOnlySerializer(CountryFieldMixin, serializers.ModelSerializer):
-    """
-    Serializer class to seralize Address model
-    """
-    user = serializers.CharField(source='user.get_full_name', read_only=True)
-
-    class Meta:
-        model = Address
-        fields = '__all__'
-
-
-class UserSerializer(serializers.ModelSerializer):
-    """
-    Serializer class to seralize User model
-    """
-    profile = ProfileSerializer(read_only=True)
-    phone_number = PhoneNumberField(source='phone', read_only=True)
-
-    class Meta:
-        model = User
-        fields = ('id', 'email', 'phone_number', 'first_name',
-                  'last_name', 'is_active', 'profile',)

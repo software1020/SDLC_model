@@ -11,7 +11,6 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
-from .utils import *
 from django.utils import timezone
 from django.http import HttpResponse, JsonResponse
 from django.db import IntegrityError
@@ -33,7 +32,6 @@ from rest_framework import permissions
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from user.authentication_backends import EmailOrPhoneNumberBackend
 from .models import *
-from .permissions import IsUserAddressOwner, IsUserProfileOwner
 from .serializers import *
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
@@ -161,20 +159,21 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
     lookup_field = 'pk'
 
 
+class UserViewSet(viewsets.ModelViewSet):
 
-class AddressViewSet(ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserAPIView(RetrieveAPIView):
     """
-    List and Retrieve user addresses
+    Get user details
     """
-    queryset = Address.objects.all()
-    serializer_class = AddressReadOnlySerializer
-    permission_classes = (IsUserAddressOwner,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
-    def get_queryset(self):
-        res = super().get_queryset()
-        user = self.request.user
-        return res.filter(user=user)
-
+    def get_object(self):
+        return self.request.user
 
 
 class ProfileCreateView(generics.CreateAPIView):
@@ -190,3 +189,4 @@ class ProfileRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = (IsAuthenticated,)
+

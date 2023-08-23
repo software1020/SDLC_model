@@ -12,6 +12,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from .models import *
 from django.dispatch import receiver
+from .managers import UserManager
 from . import signals
 
 
@@ -38,6 +39,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
 
+    objects = UserManager()
     REQUIRED_FIELDS = []
     
     class Meta:
