@@ -27,24 +27,58 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController flexibilityController = TextEditingController();
 
   List<String> predictionResults = [];
+  List<double> ratingValues = [
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0
+  ];
+
+  final Map<double, String> ratingTextMap = {
+    1.0: 'Very Poor',
+    2.0: 'Poor',
+    3.0: 'Average',
+    4.0: 'Good',
+    5.0: 'Excellent',
+  };
 
   Future<void> submitForm() async {
     const apiUrl = 'http://127.0.0.1:8000/rnnprediction/predict/';
 
+    // final inputMap = {
+    //   'ComplexProject': double.parse(complexProjectController.text),
+    //   'ProjectwithRisk': double.parse(projectWithRiskController.text),
+    //   'AssociatedCostController': double.parse(associatedCostController.text),
+    //   'ProjectDurationController': double.parse(projectDurationController.text),
+    //   'CustomerInvolvementController':
+    //       double.parse(customerInvolvementController.text),
+    //   'ImplementationStageController':
+    //       double.parse(implementationStageController.text),
+    //   'RequirementGatheringController':
+    //       double.parse(requirementGatheringController.text),
+    //   'MaintainabilityController': double.parse(maintainabilityController.text),
+    //   'ErrorDiscoveryController': double.parse(errorDiscoveryController.text),
+    //   'FlexibilityController': double.parse(flexibilityController.text),
+    //   // ... add other input fields
+    // };
+
     final inputMap = {
-      'ComplexProject': double.parse(complexProjectController.text),
-      'ProjectwithRisk': double.parse(projectWithRiskController.text),
-      'AssociatedCostController': double.parse(associatedCostController.text),
-      'ProjectDurationController': double.parse(projectDurationController.text),
-      'CustomerInvolvementController':
-          double.parse(customerInvolvementController.text),
-      'ImplementationStageController':
-          double.parse(implementationStageController.text),
-      'RequirementGatheringController':
-          double.parse(requirementGatheringController.text),
-      'MaintainabilityController': double.parse(maintainabilityController.text),
-      'ErrorDiscoveryController': double.parse(errorDiscoveryController.text),
-      'FlexibilityController': double.parse(flexibilityController.text),
+      'ComplexProject': ratingValues[0],
+      'ProjectwithRisk': ratingValues[1],
+      'AssociatedCostController': ratingValues[2],
+      'ProjectDurationController': ratingValues[3],
+      'CustomerInvolvementController': ratingValues[4],
+      'ImplementationStageController': ratingValues[5],
+      'RequirementGatheringController': ratingValues[6],
+      'MaintainabilityController': ratingValues[7],
+      'ErrorDiscoveryController': ratingValues[8],
+      'FlexibilityController': ratingValues[9],
       // ... add other input fields
     };
 
@@ -88,93 +122,239 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: complexProjectController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Complex Project'),
-              ),
-              TextField(
-                controller: projectWithRiskController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Project with Risk'),
-              ),
-              TextField(
-                controller: associatedCostController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Associated Cost'),
-              ),
-              TextField(
-                controller: projectDurationController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Project Duration'),
-              ),
-              TextField(
-                controller: customerInvolvementController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Customer Involvement'),
-              ),
-              TextField(
-                controller: implementationStageController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Implementation Stage'),
-              ),
-              TextField(
-                controller: requirementGatheringController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: 'Requirement Gathering Controller'),
-              ),
-              TextField(
-                controller: maintainabilityController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Maintainability'),
-              ),
-              TextField(
-                controller: errorDiscoveryController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Error Discovery'),
-              ),
-              TextField(
-                controller: flexibilityController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Flexibility'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: submitForm,
-                child: const Text('Submit'),
-              ),
-              if (predictionResults != null)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Prediction Results:',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    for (final result in predictionResults)
-                      Text(
-                        result,
-                        style: const TextStyle(fontSize: 36),
-                      ),
-                  ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                const Text(
+                  'Please rate the following aspects of your project (1-5, 1 = Very Poor, 5 = Excellent):',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-            ],
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Complex Project',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[0] = value;
+                    });
+                  },
+                  value: ratingValues[0],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[0]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Project with Risk',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[1] = value;
+                    });
+                  },
+                  value: ratingValues[1],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[1]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Associated Cost',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[2] = value;
+                    });
+                  },
+                  value: ratingValues[2],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[2]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Project Duration',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[3] = value;
+                    });
+                  },
+                  value: ratingValues[3],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[3]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Customer Involvement',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[4] = value;
+                    });
+                  },
+                  value: ratingValues[4],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[4]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Implementation Stage',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[5] = value;
+                    });
+                  },
+                  value: ratingValues[5],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[5]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Requirement Gathering',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[6] = value;
+                    });
+                  },
+                  value: ratingValues[6],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[6]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Maintainability',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[7] = value;
+                    });
+                  },
+                  value: ratingValues[7],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[7]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Error Discovery',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[8] = value;
+                    });
+                  },
+                  value: ratingValues[8],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[8]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                SliderFormField(
+                  label: 'Flexibility',
+                  onChanged: (value) {
+                    setState(() {
+                      ratingValues[9] = value;
+                    });
+                  },
+                  value: ratingValues[9],
+                ),
+                Text(
+                  ratingTextMap[ratingValues[9]] ?? 'Unknown',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: submitForm,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize:
+                        Size(200, 50), // Adjust the width and height as needed
+                  ),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                        fontSize: 20), // Adjust the font size as needed
+                  ),
+                ),
+                if (predictionResults != null)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Prediction Results:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10),
+                      for (final result in predictionResults)
+                        Text(
+                          result,
+                          style: const TextStyle(
+                              fontSize: 36, fontWeight: FontWeight.bold),
+                        ),
+                    ],
+                  ),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class SliderFormField extends StatelessWidget {
+  final String label;
+  final double value;
+  final ValueChanged<double> onChanged;
+
+  SliderFormField({
+    required this.label,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text(
+          label,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        Slider(
+          value: value,
+          onChanged: onChanged,
+          min: 1.0,
+          max: 5.0,
+          divisions: 4, // You can adjust this for more or fewer steps
+          label: value.toString(),
+        ),
+      ],
     );
   }
 }
